@@ -17,7 +17,12 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
- * The type Command load street.
+ * The type CommandLoadStreet loads all streets into the simulation.
+ * Streets are defined by a regular expression matching a specific format and are represented by an id.
+ * Streets consist of a length, a maximum speed, and the number of lanes.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class CommandLoadStreet extends CommandLoadEntity {
 
@@ -50,10 +55,10 @@ public class CommandLoadStreet extends CommandLoadEntity {
     private final List<Integer> streetPlaceOrder = new ArrayList<>();
 
     /**
-     * Instantiates a new Command load street.
+     * Instantiates a new CommandLoadStreet object.
      *
-     * @param simulationFileLoader the simulation file loader
-     * @param config               the config
+     * @param simulationFileLoader the simulation file loader used to load the street data.
+     * @param config the simulation configuration to add the streets and street place order to.
      */
     public CommandLoadStreet(SimulationFileLoader simulationFileLoader, Config config) {
         super(simulationFileLoader, config);
@@ -110,6 +115,7 @@ public class CommandLoadStreet extends CommandLoadEntity {
         }
 
     }
+
     private void addStreet(int id, int startNode, int endNode, int length, int lanes, int maxSpeed) {
         Map<Integer, Crossing> crossing = this.config.getCrossings();
         Crossing startCrossing = crossing.get(startNode);

@@ -11,7 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The type Graph.
+ * The Graph class represents a traffic network graph that consists of {@link Street} objects
+ * and {@link Crossing} objects.
+ * It connects the {@link Street} and {@link Crossing} together and allows
+ * {@link edu.kit.kastel.trafficsimulation.entity.car.Car} objects to travel through the network.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class Graph {
 
@@ -22,13 +28,14 @@ public class Graph {
     private final CarCollection carCollection;
 
     /**
-     * Instantiates a new Graph.
+     * Creates a new Graph object with the given {@link Tick},
+     * {@link CarCollection}, road map, street placement order, and crossing map.
      *
-     * @param tick             the tick
-     * @param carCollection    the car collection
-     * @param idRoadMap        the id road map
-     * @param streetPlaceOrder the street place order
-     * @param idCrossingMap    the id crossing map
+     * @param tick the {@link Tick} object to set for the {@link Crossing} objects
+     * @param carCollection the collection of cars on the graph
+     * @param idRoadMap the mapping of street IDs to {@link Street} objects
+     * @param streetPlaceOrder the list of {@link Street} IDs in order of placement
+     * @param idCrossingMap the mapping of crossing IDs to {@link Crossing} objects
      */
     public Graph(Tick tick, CarCollection carCollection, Map<Integer, Street> idRoadMap, List<Integer> streetPlaceOrder,
                  Map<Integer, Crossing> idCrossingMap) {
@@ -42,7 +49,8 @@ public class Graph {
     }
 
     /**
-     * Connect.
+     * Connects the {@link Street} objects and {@link Crossing} objects together.
+     * Throws an exception if a {@link Street} object is missing incoming or outgoing {@link Crossing} object.
      */
     public void connect() {
         for (Integer id: streetPlaceOrder) {
@@ -60,7 +68,7 @@ public class Graph {
     }
 
     /**
-     * Debug.
+     * Debugs the graph by printing the debug information for all {@link Crossing} and {@link Street} objects.
      */
     public void debug() {
         for (Crossing crossing: this.idCrossingMap.values()) {

@@ -5,7 +5,10 @@ import edu.kit.kastel.trafficsimulation.entity.street.Street;
 import edu.kit.kastel.trafficsimulation.simulator.Simulatable;
 
 /**
- * The type Car.
+ * A class that represents a Car in a simulation.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class Car implements Simulatable {
 
@@ -17,12 +20,12 @@ public class Car implements Simulatable {
     private int turnPreference = 0;
 
     /**
-     * Instantiates a new Car.
+     * Constructs a Car with the given id, position, maximum speed, and acceleration.
      *
-     * @param id           the id
-     * @param position     the position
-     * @param maxSpeed     the max speed
-     * @param acceleration the acceleration
+     * @param id the id of the car
+     * @param position the initial position of the car
+     * @param maxSpeed the maximum speed of the car
+     * @param acceleration the acceleration of the car
      */
     public Car(int id, Position position, int maxSpeed, int acceleration) {
         this.id = id;
@@ -32,7 +35,7 @@ public class Car implements Simulatable {
     }
 
     /**
-     * Simulate.
+     * Simulates the car's movement for one Tick in the simulation.
      */
     @Override
     public void simulate() {
@@ -69,7 +72,7 @@ public class Car implements Simulatable {
                 }
             }
         }
-
+        // If the car did not drive any distance, it must have stopped
         if (actualDriveDistanceOnStreet + actualDriveDistanceOnNewStreet <= 0) {
             this.stop();
         }
@@ -79,27 +82,27 @@ public class Car implements Simulatable {
     }
 
     /**
-     * Gets id.
+     * Gets the id of the car.
      *
-     * @return the id
+     * @return the id of the car
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Gets speed.
+     * Gets the speed of the car.
      *
-     * @return the speed
+     * @return the speed of the car
      */
     public int getSpeed() {
         return speed;
     }
 
     /**
-     * Gets position.
+     * Gets the position of the car.
      *
-     * @return the position
+     * @return the position of the car
      */
     public Position getPosition() {
         return this.position;

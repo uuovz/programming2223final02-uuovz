@@ -16,7 +16,7 @@ public interface Executable {
     boolean isActive();
 
     /**
-     * Quits this structure so {@link #isActive()} will return {@code false}.
+     * Quits this structure so {@link isActive()} will return {@code false}.
      */
     void quit();
 }

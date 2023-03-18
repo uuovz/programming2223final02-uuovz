@@ -3,7 +3,11 @@ package edu.kit.kastel.trafficsimulation.io.command;
 import java.util.regex.Pattern;
 
 /**
- * The type Command quit.
+ * This command matches the "quit" regular expression and is used
+ * to exit the {@link edu.kit.kastel.trafficsimulation.simulator.Simulation}.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class CommandQuit extends Command {
 

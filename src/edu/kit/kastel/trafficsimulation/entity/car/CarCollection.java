@@ -11,7 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The type Car collection.
+ * The type Car collection represents a collection of {@link Car} object that can be placed and simulated.
+ * This class implements the {@link Simulatable} interface.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class CarCollection implements Simulatable {
 
@@ -20,10 +24,10 @@ public class CarCollection implements Simulatable {
     private final Comparator<Car> carPositionComparator = new CarPositionComparator();
 
     /**
-     * Instantiates a new Car collection.
+     * Constructs a CarCollection with the given idCarMap and carPlaceOrder.
      *
-     * @param idCarMap      the id car map
-     * @param carPlaceOrder the car place order
+     * @param idCarMap the map of {@link Car} ids to their corresponding cars
+     * @param carPlaceOrder the order in which the {@link Car} objects will be placed
      */
     public CarCollection(Map<Integer, Car> idCarMap, List<Integer> carPlaceOrder) {
         this.idCarMap = new HashMap<>(idCarMap);
@@ -31,7 +35,8 @@ public class CarCollection implements Simulatable {
     }
 
     /**
-     * Place cars.
+     * Places the {@link Car} objects in the order specified by carPlaceOrder on the
+     * starting mileage of their corresponding streets.
      */
     public void placeCars() {
         for (int id: carPlaceOrder) {
@@ -42,10 +47,11 @@ public class CarCollection implements Simulatable {
     }
 
     /**
-     * Gets cars on street.
+     * Returns a list of all {@link Car} objects on the given street sorted by their position
+     * according to the CarPositionComparator.
      *
-     * @param street the street
-     * @return the cars on street
+     * @param street the {@link Street} to check for cars
+     * @return a list of all {@link Car} objects on the given street sorted by their position
      */
     public List<Car> getCarsOnStreet(Street street) {
         List<Car> carsOnStreet = new ArrayList<>();
@@ -59,17 +65,18 @@ public class CarCollection implements Simulatable {
     }
 
     /**
-     * Gets car by id.
+     * Returns the {@link Car} with the given id.
      *
-     * @param id the id
-     * @return the car by id
+     * @param id the id of the {@link Car} to retrieve
+     * @return the {@link Car} with the given id, or null if no such {@link Car} exists
      */
     public Car getCarById(int id) {
         return this.idCarMap.get(id);
     }
 
     /**
-     * Simulate.
+     * Simulates all @link Car} objects in the collection
+     * in order of their position according to the CarPositionComparator.
      */
     @Override
     public void simulate() {

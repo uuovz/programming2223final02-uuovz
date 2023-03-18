@@ -15,7 +15,13 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
- * The type Command load crossing.
+ * The type CommandLoadCrossing loads all crossings into the simulation.
+ * This command loads the crossing data from a file, parses the input data, validates it,
+ * and creates {@link Crossing} objects.
+ * The {@link Crossing} objects are stored in a Map, where the key is the ID of the Crossing.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class CommandLoadCrossing extends CommandLoadEntity {
 
@@ -33,10 +39,10 @@ public class CommandLoadCrossing extends CommandLoadEntity {
     private final Map<Integer, Crossing> crossings = new HashMap<>();
 
     /**
-     * Instantiates a new Command load crossing.
+     * Instantiates a new CommandLoadCrossing object.
      *
-     * @param simulationFileLoader the simulation file loader
-     * @param config               the config
+     * @param simulationFileLoader the simulation file loader used to load the street data.
+     * @param config the simulation configuration to add the streets and street place order to.
      */
     public CommandLoadCrossing(SimulationFileLoader simulationFileLoader, Config config) {
         super(simulationFileLoader, config);

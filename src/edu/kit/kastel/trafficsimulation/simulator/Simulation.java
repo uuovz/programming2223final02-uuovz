@@ -7,7 +7,12 @@ import edu.kit.kastel.trafficsimulation.entity.car.CarCollection;
 
 
 /**
- * The type Simulation.
+ * The Simulation class represents a simulation of a traffic network. It implements the {@link Simulatable} interface,
+ * which requires that it provides a method to simulate the behavior of the network.
+ * The class is responsible for configuring the network.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class Simulation implements Simulatable {
 
@@ -16,15 +21,15 @@ public class Simulation implements Simulatable {
     private final Tick tick = new Tick();
 
     /**
-     * Configure.
+     * Configures the simulation based on the given configuration.
      *
-     * @param config the config
+     * @param config the {@link Config} object to use for the simulation
      */
     public void configure(Config config) {
         this.tick.reset();
         this.carCollection = new CarCollection(config.getCars(), config.getCarPlaceOrder());
         Graph graph = new Graph(this.tick, this.carCollection, config.getStreets(),
-            config.getRoadPlaceOrder(), config.getCrossings());
+            config.getStreetPlaceOrder(), config.getCrossings());
         graph.connect();
         graph.debug();
         this.carCollection.placeCars();
@@ -32,17 +37,18 @@ public class Simulation implements Simulatable {
     }
 
     /**
-     * Gets car by id.
+     * Returns the {@link Car} object with the specified ID.
      *
-     * @param id the id
-     * @return the car by id
+     * @param id the ID of the {@link Car} to retrieve
+     * @return the {@link Car} object with the specified ID
      */
     public Car getCarById(int id) {
         return this.carCollection.getCarById(id);
     }
 
     /**
-     * Simulate.
+     * Simulates the behavior of the traffic network.
+     * {@link CarCollection} and {@link Tick} will be updated
      */
     @Override
     public void simulate() {
@@ -51,9 +57,9 @@ public class Simulation implements Simulatable {
     }
 
     /**
-     * Is configured boolean.
+     * Returns whether or not the simulation has been configured.
      *
-     * @return the boolean
+     * @return true if the simulation has been configured, false otherwise
      */
     public boolean isConfigured() {
         return this.configured;

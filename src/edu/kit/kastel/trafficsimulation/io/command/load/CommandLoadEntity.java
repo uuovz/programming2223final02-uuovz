@@ -6,7 +6,11 @@ import edu.kit.kastel.trafficsimulation.simulator.Config;
 import java.util.regex.Pattern;
 
 /**
- * The type Command load entity.
+ * The CommandLoadEntity class is an abstract class that defines the common behavior
+ * of entities that can be loaded into the simulation.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public abstract class CommandLoadEntity {
 
@@ -40,10 +44,10 @@ public abstract class CommandLoadEntity {
     protected Config config;
 
     /**
-     * Instantiates a new Command load entity.
+     * Creates a new instance of CommandLoadEntity.
      *
      * @param simulationFileLoader the simulation file loader
-     * @param config               the config
+     * @param config the configuration object
      */
     CommandLoadEntity(SimulationFileLoader simulationFileLoader, Config config) {
         this.simulationFileLoader = simulationFileLoader;
@@ -51,16 +55,16 @@ public abstract class CommandLoadEntity {
     }
 
     /**
-     * Load.
+     * Abstract method that loads the entity data into the simulation.
      */
     public abstract void load();
 
     /**
-     * Check syntax boolean.
+     * Checks if the input string matches a regex pattern.
      *
-     * @param pattern the pattern
-     * @param input   the input
-     * @return the boolean
+     * @param pattern the regex pattern to match
+     * @param input the input string to check
+     * @return true if the input string matches the regex pattern, false otherwise
      */
     protected static boolean checkSyntax(Pattern pattern, String input) {
         return pattern.matcher(input).matches();

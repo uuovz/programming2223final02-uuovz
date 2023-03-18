@@ -8,7 +8,12 @@ import edu.kit.kastel.trafficsimulation.simulator.Simulation;
 import java.util.regex.Pattern;
 
 /**
- * The type Command position.
+ * The CommandPosition class represents a command that prints the position of a car
+ * identified by its ID. The command string should match the regular expression "position.*".
+ * If the simulation is not configured, a SimulationException is thrown.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class CommandPosition extends Command {
 
@@ -19,9 +24,9 @@ public class CommandPosition extends Command {
     private final Simulation simulation;
 
     /**
-     * Instantiates a new Command position.
+     * Constructs a new CommandParser object with the given configuration and simulation objects.
      *
-     * @param simulation the simulation
+     * @param simulation the {@link Simulation} object to use for this command.
      */
     public CommandPosition(Simulation simulation) {
         this.simulation = simulation;

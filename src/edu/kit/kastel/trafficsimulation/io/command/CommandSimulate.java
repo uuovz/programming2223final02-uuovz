@@ -6,17 +6,20 @@ import edu.kit.kastel.trafficsimulation.simulator.Simulation;
 import java.util.regex.Pattern;
 
 /**
- * The type Command simulate.
+ * A command that simulates the traffic of {@link Simulation} object for a given number of time steps.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class CommandSimulate extends Command {
-    private static final String regularExpression = "simulate" + REGEX_ALL;
-    private static final Pattern pattern = Pattern.compile(regularExpression);
+    private static final String REGEX = "simulate" + REGEX_ALL;
+    private static final Pattern PATTERN = Pattern.compile(REGEX);
     private final Simulation simulation;
 
     /**
-     * Instantiates a new Command simulate.
+     * Constructs a new CommandSimulate that operates on the given Simulation object.
      *
-     * @param simulation the simulation
+     * @param simulation the {@link Simulation} object to operate on
      */
     public CommandSimulate(Simulation simulation) {
         this.simulation = simulation;
@@ -24,7 +27,7 @@ public class CommandSimulate extends Command {
 
     @Override
     public boolean matches(String commandString) {
-        return pattern.matcher(commandString).matches();
+        return PATTERN.matcher(commandString).matches();
     }
 
     @Override

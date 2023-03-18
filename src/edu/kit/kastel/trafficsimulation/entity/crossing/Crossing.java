@@ -9,106 +9,115 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The type Crossing.
+ * The Crossing class is an abstract class that represents a {@link Crossing} in a traffic simulation.
+ * It contains a list of incoming and outgoing {@link Street} objects, and the maximum allowed number of
+ * incoming and outgoing {@link Street}. The {@link Crossing} class provides an abstract method 'cross'
+ * that should be implemented in its subclasses to determine
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public abstract class Crossing {
 
     /**
-     * The constant MAX_ALLOWED_STREETS.
+     * The constant MAX_ALLOWED_STREETS is the maximum allowed number of incoming and outgoing streets.
      */
     public static final int MAX_ALLOWED_STREETS = 4;
     private static final String EXCEPTION_DEBUG = "Missing incoming/outgoing street.";
-    private static final String EXCEPTION_MAX_ALLOWED_EDGES = "Only " + MAX_ALLOWED_STREETS +
-        " streets incoming/outgoing from crossing";
-    /**
-     * The Incoming roads.
-     */
-    protected final List<Street> incomingRoads = new ArrayList<>();
-    /**
-     * The Outgoing roads.
-     */
-    protected final List<Street> outgoingRoads = new ArrayList<>();
+    private static final String EXCEPTION_MAX_ALLOWED_EDGES = String.format(
+        "Only %d streets incoming/outgoing from crossing", MAX_ALLOWED_STREETS);
     /**
      * The Tick.
      */
     protected Tick tick;
+    /**
+     * The Incoming roads.
+     */
+    protected final List<Street> incomingStreets = new ArrayList<>();
+    /**
+     * The Outgoing roads.
+     */
+    private final List<Street> outgoingStreets = new ArrayList<>();
     private final int id;
 
     /**
-     * Instantiates a new Crossing.
+     * Constructs a Crossing object with the specified ID.
      *
-     * @param id the id
+     * @param id the ID of the crossing
      */
     Crossing(int id) { this.id = id; }
 
     /**
-     * Cross street.
+     * This abstract method should be implemented in subclasses to determine which {@link Street} a car should cross.
      *
-     * @param car   the car
-     * @param index the index
-     * @return the street
+     * @param car the car to cross the {@link Street}
+     * @param index the index of the {@link Street} in the preference list
+     * @return the {@link Street} to cross
      */
     public abstract Street cross(Car car, int index);
 
     /**
-     * Add incoming street.
+     * Adds an incoming {@link Street} to the list of incoming {@link Street} objects.
      *
-     * @param street the street
+     * @param street the incoming {@link Street} to add
      */
     public void addIncomingStreet(Street street) {
-        if (this.incomingRoads.size() + 1 > MAX_ALLOWED_STREETS) {
+        if (this.incomingStreets.size() + 1 > MAX_ALLOWED_STREETS) {
             throw new SimulationException(EXCEPTION_MAX_ALLOWED_EDGES);
         }
-        this.incomingRoads.add(street);
+        this.incomingStreets.add(street);
     }
 
     /**
-     * Add outgoing street.
+     * Adds an outgoing {@link Street} to the list of outgoing {@link Street} objects.
      *
-     * @param street the street
+     * @param street the outgoing {@link Street} to add
      */
     public void addOutgoingStreet(Street street) {
-        if (this.outgoingRoads.size() + 1 > MAX_ALLOWED_STREETS) {
+        if (this.outgoingStreets.size() + 1 > MAX_ALLOWED_STREETS) {
             throw new SimulationException(EXCEPTION_MAX_ALLOWED_EDGES);
         }
-        this.outgoingRoads.add(street);
+        this.outgoingStreets.add(street);
     }
 
     /**
-     * Debug.
+     * Checks if incoming and outgoing {@link Street} object are present.
+     * If not, throws a SimulationException.
      */
     public void debug() {
-        if (this.incomingRoads.isEmpty() || this.outgoingRoads.isEmpty()) {
+        if (this.incomingStreets.isEmpty() || this.outgoingStreets.isEmpty()) {
             throw new SimulationException(EXCEPTION_DEBUG);
         }
     }
 
     /**
-     * Gets street of preference.
+     * Gets the {@link Street} of preference based on the index passed as parameter.
+     * If the preference index is greater than or equal to the number of outgoing streets,
+     * returns the first {@link Street} in the outgoing roads list.
      *
-     * @param preference the preference
-     * @return the street of preference
+     * @param preference the preference index
+     * @return the {@link Street} of preference
      */
     protected Street getStreetOfPreference(int preference) {
-        if (preference >= this.outgoingRoads.size()) {
-            return this.outgoingRoads.get(0);
+        if (preference >= this.outgoingStreets.size()) {
+            return this.outgoingStreets.get(0);
         }
-        return this.outgoingRoads.get(preference);
+        return this.outgoingStreets.get(preference);
     }
 
     /**
-     * Gets id.
+     * Gets the ID of this object.
      *
-     * @return the id
+     * @return the ID of this object.
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Sets tick.
+     * Sets the {@link Tick} for this object.
      *
-     * @param tick the tick
+     * @param tick the tick to be set.
      */
     public void setTick(Tick tick) {
         this.tick = tick;

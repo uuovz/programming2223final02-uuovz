@@ -11,7 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The type Config.
+ * The Config class represents the configuration for a {@link Simulation}. It contains maps of all the {@link Crossing},
+ * {@link Street}, and {@link Car} in the simulation,
+ * as well as lists specifying the order in which {@link Street} and {@link Car} should be placed.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class Config {
 
@@ -22,82 +27,82 @@ public class Config {
     private List<Integer> carPlaceOrder = new ArrayList<>();
 
     /**
-     * Sets crossings.
+     * Sets all {@link Crossing} objects in the configuration.
      *
-     * @param crossings the crossings
+     * @param crossings the map of {@link Crossing} objects to set
      */
     public void setCrossings(Map<Integer, Crossing> crossings) { this.crossings = new HashMap<>(crossings); }
 
     /**
-     * Gets crossings.
+     * Returns an unmodifiable map of the {@link Crossing} objects in the configuration.
      *
-     * @return the crossings
+     * @return an unmodifiable map of the {@link Crossing} objects
      */
     public Map<Integer, Crossing> getCrossings() {
         return Collections.unmodifiableMap(crossings);
     }
 
     /**
-     * Sets streets.
+     * Sets all {@link Street} objects in the configuration.
      *
-     * @param streets the streets
+     * @param streets the map of {@link Street} objects to set
      */
     public void setStreets(Map<Integer, Street> streets) { this.sreets = new HashMap<>(streets); }
 
     /**
-     * Gets streets.
+     * Returns an unmodifiable map of the {@link Street} objects in the configuration.
      *
-     * @return the streets
+     * @return an unmodifiable map of the {@link Street} objects objects
      */
     public Map<Integer, Street> getStreets() {
         return Collections.unmodifiableMap(sreets);
     }
 
     /**
-     * Gets road place order.
+     * Returns an unmodifiable list specifying the order in which {@link Street} objects should be placed.
      *
-     * @return the road place order
+     * @return an unmodifiable list specifying the order in which {@link Street} objects should be placed
      */
-    public List<Integer> getRoadPlaceOrder() {
+    public List<Integer> getStreetPlaceOrder() {
         return Collections.unmodifiableList(this.streetPlaceOrder);
     }
 
     /**
-     * Sets street place order.
+     * Sets the order in which {@link Street} objects should be placed.
      *
-     * @param streetPlaceOrder the street place order
+     * @param streetPlaceOrder the list specifying the order in which {@link Street} objects should be placed
      */
     public void setStreetPlaceOrder(List<Integer> streetPlaceOrder) {
         this.streetPlaceOrder = new ArrayList<>(streetPlaceOrder);
     }
 
     /**
-     * Sets cars.
+     * Sets the {@link Car} objects in the configuration.
      *
-     * @param cars the cars
+     * @param cars the map of {@link Car} objects to set
      */
     public void setCars(Map<Integer, Car> cars) { this.cars = new HashMap<>(cars); }
 
     /**
-     * Gets cars.
+     * Returns an unmodifiable map of the {@link Car} objects in the configuration.
      *
-     * @return the cars
+     * @return an unmodifiable map of the {@link Car} objects
      */
     public Map<Integer, Car> getCars() {
         return Collections.unmodifiableMap(cars);
     }
 
     /**
-     * Sets car place order.
+     * Sets the order in which {@link Car} objects should be placed.
      *
-     * @param carPlaceOrder the car place order
+     * @param carPlaceOrder the list specifying the order in which {@link Car} objects should be placed
      */
     public void setCarPlaceOrder(List<Integer> carPlaceOrder) { this.carPlaceOrder = new ArrayList<>(carPlaceOrder); }
 
     /**
-     * Gets car place order.
+     * Returns an unmodifiable list specifying the order in which {@link Car} objects should be placed.
      *
-     * @return the car place order
+     * @return an unmodifiable list specifying the order in which {@link Car} objects should be placed
      */
     public List<Integer> getCarPlaceOrder() { return Collections.unmodifiableList(carPlaceOrder); }
 

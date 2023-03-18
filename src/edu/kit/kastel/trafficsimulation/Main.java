@@ -17,7 +17,7 @@ public final class Main {
     private Main() { throw new IllegalStateException(UTILITY_CLASS_INSTANTIATION); }
 
     /**
-     * Starts the Shell for rover and user input.
+     * Starts the {@link Shell} for user input.
      *
      * @param args have to be empty
      */

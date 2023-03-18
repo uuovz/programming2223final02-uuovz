@@ -1,7 +1,7 @@
 package edu.kit.kastel.trafficsimulation;
 
 /**
- * The SimulationException class is a custom exception that extends the IllegalArgumentException class.
+ * The SimulationException class is a custom exception that extends the {@link IllegalArgumentException} class.
  * It is used to handle errors related to game operations and has a constructor that takes a message parameter
  *
  * @author uuovz

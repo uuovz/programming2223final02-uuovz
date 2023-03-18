@@ -16,7 +16,12 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
- * The type Command load cars.
+ * The type CommandLoadCars loads all cars into the simulation.
+ * This command loads the car data from a file, parses the input data, validates it, and creates {@link Car} objects.
+ * The {@link Car} objects are stored in a Map, where the key is the ID of the Car.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class CommandLoadCars extends CommandLoadEntity {
 
@@ -38,10 +43,10 @@ public class CommandLoadCars extends CommandLoadEntity {
     private final List<Integer> carPlaceOrder = new ArrayList<>();
 
     /**
-     * Instantiates a new Command load cars.
+     * Instantiates a new CommandLoadCars object.
      *
-     * @param simulationFileLoader the simulation file loader
-     * @param config               the config
+     * @param simulationFileLoader the simulation file loader used to load the car data.
+     * @param config the simulation configuration to add the cars and car place order to.
      */
     public CommandLoadCars(SimulationFileLoader simulationFileLoader, Config config) {
         super(simulationFileLoader, config);

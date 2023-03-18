@@ -9,7 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The type Command parser.
+ * The CommandParser class represents a parser for traffic simulation commands.
+ *
+ * It is responsible for parsing command strings and executing the corresponding commands
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class CommandParser implements Executable {
 

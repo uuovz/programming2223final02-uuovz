@@ -3,7 +3,13 @@ package edu.kit.kastel.trafficsimulation.entity.car;
 import java.util.Comparator;
 
 /**
- * The type Car position comparator.
+ * The type Car position comparator compares two car positions.
+ * The comparison is based on the following criteria:
+ * First, compares the street by their IDs.
+ * If the IDs are the same, then it compares the positions by their mileages.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class CarPositionComparator implements Comparator<Car> {
 

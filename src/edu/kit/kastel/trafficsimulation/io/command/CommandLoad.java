@@ -15,11 +15,15 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * The type Command load.
+ * This command is responsible for loading a simulation from a file.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class CommandLoad extends Command {
-    private static final String regularExpression = "load" + REGEX_ALL;
-    private static final Pattern pattern = Pattern.compile(regularExpression);
+
+    private static final String REGEX = "load" + REGEX_ALL;
+    private static final Pattern PATTERN = Pattern.compile(REGEX);
     private final Config config;
     private final Simulation simulation;
     private SimulationFileLoader simulationFileLoader;
@@ -27,8 +31,8 @@ public class CommandLoad extends Command {
     /**
      * Instantiates a new Command load.
      *
-     * @param config     the config
-     * @param simulation the simulation
+     * @param config the configuration object for the simulation
+     * @param simulation the simulation to be configured
      */
     public CommandLoad(Config config, Simulation simulation) {
         this.config = config;
@@ -37,7 +41,7 @@ public class CommandLoad extends Command {
 
     @Override
     public boolean matches(String commandString) {
-        return pattern.matcher(commandString).matches();
+        return PATTERN.matcher(commandString).matches();
     }
 
     @Override

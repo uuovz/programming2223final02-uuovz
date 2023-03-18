@@ -3,7 +3,10 @@ package edu.kit.kastel.trafficsimulation.entity.car;
 import edu.kit.kastel.trafficsimulation.entity.street.Street;
 
 /**
- * The type Position.
+ * The Position class represents a position of a {@link Car} on a {@link Street} in the traffic simulation.
+ *
+ * @author uuovz
+ * @version 1.0
  */
 public class Position {
 
@@ -11,45 +14,45 @@ public class Position {
     private Street street;
 
     /**
-     * Instantiates a new Position.
+     * Constructs a new Position object with the given {@link Street}.
      *
-     * @param street the street
+     * @param street the {@link Street} on which the position is located
      */
     public Position(Street street) {
         this.street = street;
     }
 
     /**
-     * Gets street.
+     * Returns the {@link Street} on which the position is located.
      *
-     * @return the street
+     * @return the {@link Street} on which the position is located
      */
     public Street getStreet() {
         return street;
     }
 
     /**
-     * Sets street.
+     * Sets the {@link Street} on which the position is located.
      *
-     * @param street the street
+     * @param street the {@link Street} on which the position is located
      */
     public void setStreet(Street street) {
         this.street = street;
     }
 
     /**
-     * Gets mileage.
+     * Returns the mileage, which is the position of the {@link Car} on the {@link Street}.
      *
-     * @return the mileage
+     * @return the mileage, which is the position of the {@link Car} on the {@link Street}
      */
     public int getMileage() {
         return mileage;
     }
 
     /**
-     * Sets mileage.
+     * Sets the mileage, which is the position of the {@link Car} on the {@link Street}.
      *
-     * @param mileage the mileage
+     * @param mileage the mileage, which is the position of the {@link Car} on the {@link Street}
      */
     public void setMileage(int mileage) {
         this.mileage = mileage;
