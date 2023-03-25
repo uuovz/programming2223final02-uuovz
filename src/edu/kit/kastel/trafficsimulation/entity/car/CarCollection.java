@@ -4,7 +4,6 @@ import edu.kit.kastel.trafficsimulation.entity.street.Street;
 import edu.kit.kastel.trafficsimulation.simulator.Simulatable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +38,7 @@ public class CarCollection implements Simulatable {
      * starting mileage of their corresponding streets.
      */
     public void placeCars() {
-        for (int id: carPlaceOrder) {
+        for (int id: this.carPlaceOrder) {
             Car car = this.idCarMap.get(id);
             Position position = car.getPosition();
             position.setMileage(position.getStreet().getStartMileage());
@@ -53,6 +52,7 @@ public class CarCollection implements Simulatable {
      * @param street the {@link Street} to check for cars
      * @return a list of all {@link Car} objects on the given street sorted by their position
      */
+
     public List<Car> getCarsOnStreet(Street street) {
         List<Car> carsOnStreet = new ArrayList<>();
         for (Car car: idCarMap.values()) {
@@ -60,7 +60,7 @@ public class CarCollection implements Simulatable {
                 carsOnStreet.add(car);
             }
         }
-        Collections.sort(carsOnStreet, this.carPositionComparator);
+        carsOnStreet.sort(this.carPositionComparator);
         return carsOnStreet;
     }
 
@@ -78,12 +78,14 @@ public class CarCollection implements Simulatable {
      * Simulates all @link Car} objects in the collection
      * in order of their position according to the CarPositionComparator.
      */
+
     @Override
     public void simulate() {
         List<Car> allCars = new ArrayList<>(idCarMap.values());
-        Collections.sort(allCars, this.carPositionComparator);
+        allCars.sort(this.carPositionComparator);
         for (Car car: allCars) {
             car.simulate();
         }
     }
+
 }

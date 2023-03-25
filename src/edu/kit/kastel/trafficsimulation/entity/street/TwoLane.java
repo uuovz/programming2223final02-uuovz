@@ -39,11 +39,12 @@ public class TwoLane extends Street {
         }
         Car nextNextCar = getNextCar(carsOnStreet, nextCar);
         if (nextNextCar == null && distance >= getDistanceBetweenCars(car , nextCar) + MIN_DISTANCE) {
+            this.lastCarOvertake = car;
             return distance;
         }
         if (distance >= getDistanceBetweenCars(car , nextCar) + MIN_DISTANCE && nextNextCar != null
             && getDistanceBetweenCars(car, nextCar) + MIN_DISTANCE
-                <= getDistanceBetweenCars(car, nextNextCar) - MIN_DISTANCE ) {
+            <= getDistanceBetweenCars(car, nextNextCar) - MIN_DISTANCE ) {
             this.lastCarOvertake = car;
             return getDriveDistance(getDistanceBetweenCars(car, nextNextCar), distance);
         }
