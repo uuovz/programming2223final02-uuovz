@@ -25,7 +25,7 @@ public abstract class Crossing {
     public static final int MAX_ALLOWED_STREETS = 4;
     private static final String EXCEPTION_DEBUG = "Missing incoming/outgoing street.";
     private static final String EXCEPTION_MAX_ALLOWED_EDGES = String.format(
-        "Only %d streets incoming/outgoing from crossing", MAX_ALLOWED_STREETS);
+        "Only %d streets incoming/outgoing from crossing.", MAX_ALLOWED_STREETS);
     /**
      * The Tick.
      */

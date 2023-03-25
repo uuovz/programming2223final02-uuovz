@@ -2,7 +2,6 @@ package edu.kit.kastel.trafficsimulation.io;
 
 import edu.kit.kastel.trafficsimulation.SimulationException;
 import edu.kit.kastel.trafficsimulation.io.command.CommandParser;
-import edu.kit.kastel.trafficsimulation.simulator.Config;
 import edu.kit.kastel.trafficsimulation.simulator.Simulation;
 
 import java.util.Scanner;
@@ -15,9 +14,8 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class Shell {
-    private final Config config = new Config();
     private final Simulation simulation = new Simulation();
-    private final CommandParser commandParser = new CommandParser(config, simulation);
+    private final CommandParser commandParser = new CommandParser(simulation);
 
     /**
      * Starts the simulation shell.

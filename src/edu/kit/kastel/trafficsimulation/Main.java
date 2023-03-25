@@ -11,8 +11,6 @@ import edu.kit.kastel.trafficsimulation.io.Shell;
 public final class Main {
 
     private static final String UTILITY_CLASS_INSTANTIATION = "Utility class cannot be instantiated.";
-    private static final String ERROR_COMMAND_ARGUMENTS = "No Command Arguments Allowed.";
-    private static final String ERROR_START = "Error:";
 
     private Main() { throw new IllegalStateException(UTILITY_CLASS_INSTANTIATION); }
 
@@ -23,12 +21,8 @@ public final class Main {
      */
     public static void main(String[] args) {
 
-        if (args.length == 0) {
-            Shell shell = new Shell();
-            shell.start();
-        } else {
-            System.err.println(ERROR_START + ERROR_COMMAND_ARGUMENTS);
-        }
+        Shell shell = new Shell();
+        shell.start();
 
     }
 

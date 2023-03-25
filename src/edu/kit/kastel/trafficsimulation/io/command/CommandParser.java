@@ -2,7 +2,6 @@ package edu.kit.kastel.trafficsimulation.io.command;
 
 import edu.kit.kastel.trafficsimulation.SimulationException;
 import edu.kit.kastel.trafficsimulation.io.Executable;
-import edu.kit.kastel.trafficsimulation.simulator.Config;
 import edu.kit.kastel.trafficsimulation.simulator.Simulation;
 
 import java.util.ArrayList;
@@ -18,6 +17,7 @@ import java.util.List;
  */
 public class CommandParser implements Executable {
 
+    private static final String INVALID_LEADING_ENDING = " ";
     private static final String EXCEPTION_INVALID = "Your command was invalid.";
     private boolean active = true;
     private final List<Command> commands = new ArrayList<>();
@@ -26,12 +26,11 @@ public class CommandParser implements Executable {
     /**
      * Instantiates a new Command parser.
      *
-     * @param config     the config
-     * @param simulation the simulation
+     * @param simulation the simulation session
      */
-    public CommandParser(Config config, Simulation simulation) {
+    public CommandParser(Simulation simulation) {
         this.commands.add(new CommandQuit(this));
-        this.commands.add(new CommandLoad(config, simulation));
+        this.commands.add(new CommandLoad(simulation));
         this.commands.add(new CommandPosition(simulation));
         this.commands.add(new CommandSimulate(simulation));
     }
@@ -44,6 +43,10 @@ public class CommandParser implements Executable {
      * @return the string
      */
     public String parse(String commandString) {
+        if (!validateFormat(commandString)) {
+            throw new SimulationException(EXCEPTION_INVALID);
+        }
+
         for (Command command: commands) {
             if (command.matches(commandString)) {
                 return command.execute(commandString);
@@ -61,5 +64,11 @@ public class CommandParser implements Executable {
     @Override
     public void quit() {
         this.active = false;
+    }
+
+    private boolean validateFormat(String commandString) {
+        String firstChar = commandString.substring(0, 1);
+        String lastChar = commandString.substring(commandString.length() - 1);
+        return !(firstChar.equals(INVALID_LEADING_ENDING) || lastChar.equals(INVALID_LEADING_ENDING));
     }
 }

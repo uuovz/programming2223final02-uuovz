@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The Config class represents the configuration for a {@link Simulation}. It contains maps of all the {@link Crossing},
+ * The Config class represents the configuration for a {@link Network}. It contains maps of all the {@link Crossing},
  * {@link Street}, and {@link Car} in the simulation,
  * as well as lists specifying the order in which {@link Street} and {@link Car} should be placed.
  *

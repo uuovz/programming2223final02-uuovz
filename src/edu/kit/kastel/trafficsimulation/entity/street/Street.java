@@ -21,8 +21,8 @@ public abstract class Street {
      * The constant MIN_DISTANCE.
      */
     protected static final int MIN_DISTANCE = 10;
-    private static final String EXCEPTION_TEMPLATE_TO_MANY_CARS = "To many cars on street %d";
-    private static final String EXCEPTION_TEMPLATE_SAME = "Same start and end crossing on street %d";
+    private static final String EXCEPTION_TEMPLATE_TO_MANY_CARS = "To many cars on street %d.";
+    private static final String EXCEPTION_TEMPLATE_SAME = "Same start and end crossing on street %d.";
     /**
      * The Car collection.
      */
@@ -43,7 +43,7 @@ public abstract class Street {
      * @param length the length of the {@link Street}
      * @param maximumSpeed the maximum speed limit allowed on the {@link Street}
      */
-    public Street(int id, Crossing startCrossing, Crossing endCrossing, int length, int maximumSpeed) {
+    protected Street(int id, Crossing startCrossing, Crossing endCrossing, int length, int maximumSpeed) {
         this.id = id;
         this.startCrossing = startCrossing;
         this.endCrossing = endCrossing;

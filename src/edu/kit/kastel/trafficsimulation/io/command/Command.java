@@ -1,11 +1,12 @@
 package edu.kit.kastel.trafficsimulation.io.command;
 
 import edu.kit.kastel.trafficsimulation.SimulationException;
+import edu.kit.kastel.trafficsimulation.simulator.Network;
 
 
 /**
  * The Command class is an abstract class that provides the basic functionality
- * for all commands in the {@link edu.kit.kastel.trafficsimulation.simulator.Simulation}.
+ * for all commands in the {@link Network}.
  *
  * It defines some constants and methods that are used across all subclasses.
  *

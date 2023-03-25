@@ -7,6 +7,7 @@ import edu.kit.kastel.trafficsimulation.io.command.load.CommandLoadCrossing;
 import edu.kit.kastel.trafficsimulation.io.command.load.CommandLoadEntity;
 import edu.kit.kastel.trafficsimulation.io.command.load.CommandLoadStreet;
 import edu.kit.kastel.trafficsimulation.simulator.Config;
+import edu.kit.kastel.trafficsimulation.simulator.Network;
 import edu.kit.kastel.trafficsimulation.simulator.Simulation;
 
 import java.io.IOException;
@@ -24,18 +25,13 @@ public class CommandLoad extends Command {
 
     private static final String REGEX = "load" + REGEX_ALL;
     private static final Pattern PATTERN = Pattern.compile(REGEX);
-    private final Config config;
     private final Simulation simulation;
-    private SimulationFileLoader simulationFileLoader;
-
     /**
      * Instantiates a new Command load.
      *
-     * @param config the configuration object for the simulation
-     * @param simulation the simulation to be configured
+     * @param simulation the simulation session
      */
-    public CommandLoad(Config config, Simulation simulation) {
-        this.config = config;
+    public CommandLoad(Simulation simulation) {
         this.simulation = simulation;
     }
 
@@ -46,20 +42,24 @@ public class CommandLoad extends Command {
 
     @Override
     public String execute(String commandString) {
+        Config config = new Config();
+        SimulationFileLoader simulationFileLoader;
         try {
-            this.simulationFileLoader = new SimulationFileLoader(getArgument(commandString));
+            simulationFileLoader = new SimulationFileLoader(getArgument(commandString));
         } catch (IOException ioException) {
             throw new SimulationException(ioException.getMessage());
         }
         List<CommandLoadEntity> commandLoadEntities = new ArrayList<>();
-        commandLoadEntities.add(new CommandLoadCrossing(this.simulationFileLoader, this.config));
-        commandLoadEntities.add(new CommandLoadStreet(this.simulationFileLoader, this.config));
-        commandLoadEntities.add(new CommandLoadCars(this.simulationFileLoader, this.config));
+        commandLoadEntities.add(new CommandLoadCrossing(simulationFileLoader, config));
+        commandLoadEntities.add(new CommandLoadStreet(simulationFileLoader, config));
+        commandLoadEntities.add(new CommandLoadCars(simulationFileLoader, config));
         for (CommandLoadEntity commandLoadEntity: commandLoadEntities) {
             commandLoadEntity.load();
         }
-        this.simulation.configure(this.config);
+
+        this.simulation.setNetwork(new Network(config));
         return OUTPUT_MESSAGE_READY;
+
     }
 
 }

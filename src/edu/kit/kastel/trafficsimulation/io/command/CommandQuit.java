@@ -1,10 +1,12 @@
 package edu.kit.kastel.trafficsimulation.io.command;
 
+import edu.kit.kastel.trafficsimulation.simulator.Network;
+
 import java.util.regex.Pattern;
 
 /**
  * This command matches the "quit" regular expression and is used
- * to exit the {@link edu.kit.kastel.trafficsimulation.simulator.Simulation}.
+ * to exit the {@link Network}.
  *
  * @author uuovz
  * @version 1.0

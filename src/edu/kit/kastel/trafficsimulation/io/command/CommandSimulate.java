@@ -1,12 +1,13 @@
 package edu.kit.kastel.trafficsimulation.io.command;
 
 import edu.kit.kastel.trafficsimulation.SimulationException;
+import edu.kit.kastel.trafficsimulation.simulator.Network;
 import edu.kit.kastel.trafficsimulation.simulator.Simulation;
 
 import java.util.regex.Pattern;
 
 /**
- * A command that simulates the traffic of {@link Simulation} object for a given number of time steps.
+ * A command that simulates the traffic of {@link Network} object for a given number of time steps.
  *
  * @author uuovz
  * @version 1.0
@@ -19,7 +20,7 @@ public class CommandSimulate extends Command {
     /**
      * Constructs a new CommandSimulate that operates on the given Simulation object.
      *
-     * @param simulation the {@link Simulation} object to operate on
+     * @param simulation the simulation session
      */
     public CommandSimulate(Simulation simulation) {
         this.simulation = simulation;
@@ -32,13 +33,14 @@ public class CommandSimulate extends Command {
 
     @Override
     public String execute(String commandString) {
-        if (!simulation.isConfigured()) {
+        if (!this.simulation.isActive()) {
             throw new SimulationException(EXCEPTION_CONFIGURED);
         }
+        Network network = this.simulation.getNetwork();
         String argument = getArgument(commandString);
         int steps = getPositiveInteger(argument);
         for (int i = 0; i < steps; i++) {
-            simulation.simulate();
+            network.simulate();
         }
         return OUTPUT_MESSAGE_READY;
     }
