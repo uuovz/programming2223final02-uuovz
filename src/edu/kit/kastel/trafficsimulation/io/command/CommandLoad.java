@@ -31,6 +31,7 @@ public class CommandLoad extends Command {
      *
      * @param simulation the simulation session
      */
+
     public CommandLoad(Simulation simulation) {
         this.simulation = simulation;
     }
